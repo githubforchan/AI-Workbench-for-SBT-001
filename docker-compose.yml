@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:15-alpine
+    container_name: team_postgres_db
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: devuser                 # DB 접속용 아이디
+      POSTGRES_PASSWORD: devpassword # DB 접속용 비밀번호
+      POSTGRES_DB: dev_database            # 기본으로 생성될 데이터베이스 이름
+      TZ: Asia/Seoul                 	          # 한국 시간대 설정
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      
+volumes:
+  postgres_data:
